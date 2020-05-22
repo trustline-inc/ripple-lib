@@ -41,7 +41,7 @@
     "assert-diff": "^3.0.0",
     "doctoc": "^1.4.0",
     "ejs": "^3.0.1",
-    "eslint": "^6.5.1",
+    "eslint": "^7.0.0",
     "eventemitter2": "^6.0.0",
     "json-schema-to-markdown-table": "^0.4.0",
     "mocha": "^7.1.1",
@@ -67,7 +67,7 @@
     "test": "TS_NODE_PROJECT=src/tsconfig.json nyc mocha --exit",
     "test:watch": "TS_NODE_PROJECT=src/tsconfig.json mocha --watch --reporter dot",
     "format": "prettier --write '{src,test}/**/*.ts'",
-    "lint": "eslint 'src/**/*.ts' 'test/**/*.{ts,js}'",
+    "lint": "eslint ./ --ext .js,.ts",
     "perf": "./scripts/perf_test.sh",
     "start": "node scripts/http.js"
   },

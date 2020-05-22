@@ -1,0 +1,16 @@
+build
+tags
+bin/rippled
+Debug
+Release
+tmp
+db
+
+#test/config.js
+
+lib-cov
+src-cov
+coverage
+dist
+scripts/cache
+.nyc_output
