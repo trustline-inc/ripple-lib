@@ -1,10 +1,10 @@
-import isEqual from 'lodash.isequal'
+import _ from 'lodash'
 import * as utils from './utils'
 import keypairs from 'ripple-keypairs'
 import binaryCodec from 'ripple-binary-codec'
 import {computeBinaryTransactionHash} from '../common/hashes'
 import {SignOptions, KeyPair, TransactionJSON} from './types'
-import {BigNumber} from 'bignumber.js'
+import BigNumber from 'bignumber.js'
 import {xrpToDrops} from '../common'
 import {RippleAPI} from '..'
 const validate = utils.common.validate
@@ -95,7 +95,7 @@ function objectDiff(a: object, b: object): object {
       return
     }
     if (type1 === '[object Array]') {
-      if (!isEqual(i1, i2)) {
+      if (!_.isEqual(i1, i2)) {
         diffs[k] = i2 // If arrays do not match, add second item to diffs
       }
       return
@@ -161,7 +161,25 @@ function checkTxSerialization(serialized: string, tx: TransactionJSON): void {
     delete decoded.SigningPubKey
   }
 
-  if (!isEqual(decoded, tx)) {
+  // - Memos have exclusively hex data which should ignore case. 
+  //   Since decode goes to upper case, we set all tx memos to be uppercase for the comparison.
+  tx.Memos?.map(memo => {
+    if(memo?.Memo?.MemoData) {
+      memo.Memo.MemoData = memo.Memo.MemoData.toUpperCase();
+    }
+
+    if(memo?.Memo?.MemoType) {
+      memo.Memo.MemoType = memo.Memo.MemoType.toUpperCase();
+    }
+    
+    if(memo?.Memo?.MemoFormat) {
+      memo.Memo.MemoFormat = memo.Memo.MemoFormat.toUpperCase();
+    }
+
+    return memo
+  })
+
+  if (!_.isEqual(decoded, tx)) {
     const error = new utils.common.errors.ValidationError(
       'Serialized transaction does not match original txJSON. See `error.data`'
     )

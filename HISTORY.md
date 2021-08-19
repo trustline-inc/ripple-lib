@@ -2,6 +2,56 @@
 
 Subscribe to [the **ripple-lib-announce** mailing list](https://groups.google.com/forum/#!forum/ripple-lib-announce) for release announcements. We recommend that ripple-lib users stay up-to-date with the latest stable release.
 
+## 1.10.0 (2021-08-12)
+
+* Add address generation from Devnet/Testnet faucets (#1497)
+* Fix bug with `getBalances()` ledgerVersion (#1505)
+* Include lodash in webpack build (#1500)
+* Documentation Updates:
+  * Export and document AccountSetFlags (#1525)
+  * Add links to example keypair derivation (#1523)
+
+## 1.9.8 (2021-07-30)
+
+* Export offline methods to top level of package (#1479)
+* Remove deprecated ledger fields (#1160)
+  * These fields have been deprecated for many years: accepted, hash (use ledger_hash instead), seqNum (use ledger_index instead), totalCoins (use total_coins instead)
+* Docs improvements (#1251, #1420, #1463)
+* Reduce dependencies on lodash (#1467)
+* Bug fixes
+  * Allow lowercase hex for memos (#1475)
+  * Add type argument to Promise (#1474)
+  * Fix miscommunication with ripplingDisabled in trustlines (#1481)
+  * Allow X-address for issuer (#1471)
+* Dependencies
+  * ws, ripple-binary-codec
+  * deps-dev: typescript, @types/node, ts-node
+
+The SHA-256 checksums for the browser version of this release can be found below.
+```
+% shasum -a 256 build/*
+f3a0efb9f8bb618da6b10425a9b55a8492359a331a22d0ab4de7d3551870eb3d  build/ripple-latest-min.js
+fc17a5572001d814ea6b81aa701fcb66882ec031c68afb769a8ea8b71c6529a6  build/ripple-latest-min.js.LICENSE.txt
+fd40457a89a14732ce261148e129cdda5aa963d9a433c57700353083faa1bffe  build/ripple-latest.js
+```
+
+## 1.9.7 (2021-07-14)
+
+* Bug fixes
+  * TypeScript: fix TrustlineTransaction type (#1458) (#1460) (thanks @mrosendin)
+* Docs
+  * Update boilerplate (#1459) (thanks @mDuo13)
+* Dependencies
+  * @types/node, @types/ws, @types/lodash, @types/mocha, prettier, mocha, webpack, ripple-binary-codec, ws, webpack-cli, doctoc
+
+The SHA-256 checksums for the browser version of this release can be found below.
+```
+% shasum -a 256 build/*
+a994422648c040076251c9a040fd494bc2ee30de23867607985b953022853afc  build/ripple-latest-min.js
+fc17a5572001d814ea6b81aa701fcb66882ec031c68afb769a8ea8b71c6529a6  build/ripple-latest-min.js.LICENSE.txt
+2e22b6187ff5f9300520c29a538013067609b439181f1f2184d6a80fcfa2449c  build/ripple-latest.js
+```
+
 ## 1.9.6 (2021-07-01)
 
 * Bug fixes
